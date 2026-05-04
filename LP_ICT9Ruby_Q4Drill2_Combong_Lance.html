@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT Q4 Drill 2</title>
+
+    <style>
+         body {
+            font-family: Arial;
+            color: black;
+            text-align: center;
+            margin-top: 80px;
+            background-color: orangered;
+
+         }
+         
+
+         .container{
+            background-color: rgba(7, 1, 1, 0.333);
+            padding: 20px;
+            width: 300px;
+            margin: auto;
+            border: 20px solid white;
+            border-radius: 20px;
+            border: 2px solid black;
+         }
+
+         input{
+            padding: 6px;
+            width: 80%;
+            margin-bottom: 10px;
+         }
+
+         button{
+            padding: 8px 15px;
+            background-color: rgb(235, 105, 40);
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+         }
+
+         output{
+            margin-top: 15px;
+            text-align: left;
+         }
+    </style>
+
+</head>
+<body>
+
+    <div class="container">
+        <h2>Heat Index Checker</h2>
+        <p style="text-align: left; font-size: 14px; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;"> Note: Input the appropriate temperature (In Celcius) and the humidity of the weather. After that, click "check" to see the classification of the heat index.</p>
+
+        <input type="number" id="Temperature" placeholder="Temperature  ">
+        <br>
+
+        <input type="number" id="Humidity" placeholder="Humidity ">
+        <br>
+
+        <button onclick="checkHeat()">Check</button>
+
+        <div class="output">
+            <p id="Category"> </p>
+            <p id="Description"> </p>
+
+        </div>
+
+    </div>
+
+<script>
+    function checkHeat(){
+        var Temperature = document.getElementById("Temperature").value;
+        var Humidity = document.getElementById("Humidity").value;
+        if(Temperature=== ""){
+            alert("Please enter Temperature and Humidity");
+            return; 
+        }
+
+        if(Humidity=== ""){
+            alert("Please enter Temperature and Humidity");
+            return; 
+        }
+
+         
+
+        Temperature = Number(Temperature);
+        Humidity = Number(Humidity);
+
+        var HeatIndex = Temperature + (0.33 * Humidity) - 4 ; 
+        var status = "";
+        
+
+       
+        switch(true){
+            case (HeatIndex <= 27):
+            status= "Cool Weather";
+            break; 
+
+            case (HeatIndex <= 32):
+            status= "Warm Weather";
+            break; 
+
+            case (HeatIndex <= 37):
+            status= "Hot  Weather";
+            break; 
+
+            case (HeatIndex <= 41):
+            status= "Very Hot Weather";
+            break; 
+            
+            default:
+                status = "CAUTION: Extreme/Dangerous/Fatal Heat"
+
+        }
+
+        document.getElementById("Category").innerHTML = "Heat Index: " + HeatIndex.toFixed(1) + "°C";
+        document.getElementById("Description").innerHTML = "Status: " + status; 
+        
+
+
+    }
+    
+
+</script>
+    
+</body>
+</html>
